@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
+<h3>Name: HARIKRISHNA M </h3>
+<h3>Register Number:  212225240046   </h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -89,6 +89,81 @@ F H <BR>
 ['0', '1', '2', '3', '4']
 
 <hr>
+<h3>
+ CODE :
+
+ ```
+
+graph = {}
+
+while True:
+    vertices_input = input("Enter number of vertices and edges: ").strip()
+    if not vertices_input:
+        print("Please enter the number of vertices and edges.")
+        continue
+    parts = vertices_input.split()
+    if len(parts) != 2:
+        print("Enter exactly two integers: number of vertices and number of edges.")
+        continue
+    try:
+        n, e = map(int, parts)
+        if n < 0 or e < 0:
+            print("Numbers must be non-negative.")
+            continue
+        break
+    except ValueError:
+        print("Invalid input. Please enter two integers.")
+
+if n == 0:
+    print("No vertices to traverse.")
+    exit()
+
+print("Enter the edges:")
+
+for i in range(e):
+    u, v = input().split()
+
+    if u not in graph:
+        graph[u] = []
+    if v not in graph:
+        graph[v] = []
+
+    graph[u].append(v)
+    graph[v].append(u)
+
+visited = []
+
+def dfs(node):
+    if node not in visited:
+        visited.append(node)
+        for neighbour in graph.get(node, []):
+            dfs(neighbour)
+
+while True:
+    start = input("Enter the starting node: ").strip()
+    if not start:
+        print("Please enter a valid starting node.")
+        continue
+    if start not in graph:
+        print("Starting node not found in the graph. Available nodes:", ", ".join(sorted(graph)))
+        continue
+    break
+
+dfs(start)
+
+print("DFS Traversal:")
+print(visited)
+
+
+
+```
+</h3>
+<h3>
+OUTPUT:
+ 
+ <img width="1134" height="490" alt="image" src="https://github.com/user-attachments/assets/8fdd8101-1a03-4a7e-8bb9-85c704ddd62d" />
+
+</h3>
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
